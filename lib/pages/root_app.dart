@@ -86,8 +86,9 @@ class _RootAppState extends State<RootApp> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Icon(
+                    
                    bottomItems[index]['icon'],
-                    color: Colors.black,
+                    color: pageIndex == index ?Colors.black :Colors.orange,
                   ),
                   SizedBox(
                     height: 5,
@@ -95,7 +96,7 @@ class _RootAppState extends State<RootApp> {
                   Center(
                     child: Text(
                       bottomItems[index]['label'],
-                      style: TextStyle(color: Colors.black, fontSize: 10),
+                      style: TextStyle( color: pageIndex == index?Colors.black:Colors.orange, fontSize: 10),
                     ),
                   )
                 ],
