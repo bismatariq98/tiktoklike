@@ -1,6 +1,7 @@
 List items = [
   {
     "videoUrl" : "assets/videos/video_1.mp4",
+    "coverImage":"assets/love.jpg",
     "name" : "Vannak Niza🦋",
     "caption" : "Morning, everyone!!",
     "songName" : "original sound - Łÿ Pîkâ Ćhûû",
@@ -12,6 +13,7 @@ List items = [
   },
   {
     "videoUrl" : "assets/videos/video_2.mp4",
+    "coverImage":"assets/blackmen.png",
     "name" : "Dara Chamroeun",
     "caption" : "Oops 🙊 #fyp #cambodiatiktok",
     "songName" : "original sound - 💛💛Khantana 🌟",
@@ -24,6 +26,7 @@ List items = [
   {
     "videoUrl" : "assets/videos/video_3.mp4",
     "name" : "9999womenfashion",
+    "coverImage":"assets/abcd.png",
     "caption" : "#블루모드",
     "songName" : "original sound - 🖤Khün MÄk🇰🇭",
     "profileImg" : "https://p16-tiktokcdn-com.akamaized.net/aweme/720x720/tiktok-obj/1664576339652610.jpeg",

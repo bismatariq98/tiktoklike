@@ -55,6 +55,7 @@ class _HomePageState extends State<HomePage>
         children: List.generate(items.length, (index) {
           return VideoPlayerItem(
             videoUrl: items[index]['videoUrl'],
+            coverImage: items[index]['coverImage'],
             size: size,
             name: items[index]['name'],
             caption: items[index]['caption'],
@@ -72,6 +73,7 @@ class _HomePageState extends State<HomePage>
 }
 
 class VideoPlayerItem extends StatefulWidget {
+  final String coverImage;
   final String videoUrl;
   final String name;
   final String caption;
@@ -92,7 +94,9 @@ class VideoPlayerItem extends StatefulWidget {
       this.comments,
       this.shares,
       this.albumImg,
-      this.videoUrl})
+      this.videoUrl,
+      this.coverImage
+      })
       : super(key: key);
 
   final Size size;
@@ -102,119 +106,136 @@ class VideoPlayerItem extends StatefulWidget {
 }
 
 class _VideoPlayerItemState extends State<VideoPlayerItem> {
-  VideoPlayerController _videoController;
-  bool isShowPlaying = false;
+  // VideoPlayerController _videoController;
+  // bool isShowPlaying = false;
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
 
-    _videoController = VideoPlayerController.asset(widget.videoUrl)
-      ..initialize().then((value) {
-       _videoController.play();
-        setState(() {
+  //   _videoController = VideoPlayerController.asset(widget.videoUrl)
+  //     ..initialize().then((value) {
+  //      _videoController.play();
+  //       setState(() {
           
-          isShowPlaying = false;
-        });
-      });
+  //         isShowPlaying = false;
+  //       });
+  //     });
 
       
-  }
+  // }
 
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-    _videoController.dispose();
+  // @override
+  // void dispose() {
+  //   // TODO: implement dispose
+  //   super.dispose();
+  //   _videoController.dispose();
 
     
-  }
-  Widget isPlaying(){
-    return _videoController.value.isPlaying && !isShowPlaying  ? Container() : Icon(Icons.play_arrow,size: 80,color: white.withOpacity(0.5),);
-  }
+  // }
+  // Widget isPlaying(){
+  //   return _videoController.value.isPlaying && !isShowPlaying  ? Container() : Icon(Icons.play_arrow,size: 80,color: white.withOpacity(0.5),);
+  // }
 
   @override
   Widget build(BuildContext context) {
     return 
-    InkWell(
-      onTap: () {
-        setState(() {
-          _videoController.value.isPlaying
-              ? _videoController.pause()
-              : _videoController.play();
-        });
-      },
-      child: RotatedBox(
-        quarterTurns: -1,
-        child: Container(
-          color:Colors.white,
-            height: widget.size.height,
-            width: widget.size.width,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal:7,vertical: 10),
-                          child: Stack(
-                children: <Widget>[
-                  Container(
+    RotatedBox(
+      quarterTurns: -1,
+      child: Container(
+        color:Colors.white,
+          height: widget.size.height,
+          width: widget.size.width,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal:10,vertical: 10),
+                        child: Stack(
+              children: <Widget>[
+                PageView.builder(
+                  itemBuilder:(context,index){
+            return  Container(
 
-                    height: widget.size.height,
-                    width: widget.size.width,
-                    decoration: BoxDecoration(color:Colors.pink,
-                    borderRadius: BorderRadius.circular(20)
-                    ),
-                    child: Stack(
-                      children: <Widget>[
-                        VideoPlayer(_videoController),
-                        Center(
-                          child: Container(
-                            decoration: BoxDecoration(
-                            ),
-                            child: isPlaying(),
-                          ),
-                        )
-                      ],
-                    ),
+                  height: widget.size.height,
+                  width: widget.size.width,
+                  decoration: BoxDecoration(color:Colors.pink,
+                  //  image:DecorationImage(image: AssetImage("${widget.coverImage}"),fit: BoxFit.fill),
+                  borderRadius: BorderRadius.circular(20)
                   ),
-                  Container(
-                    height: widget.size.height,
-                    width: widget.size.width,
-                    child: Padding(
-                      padding:
-                          const EdgeInsets.only(left: 15, top: 20, bottom: 10),
-                      child: SafeArea(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            // HeaderHomePage(),
-                            Expanded(
-                                child:Column(
-                              children: <Widget>[
-                                // LeftPanel(
-                                //   size: widget.size,
-                                //   name: "${widget.name}",
-                                //   caption: "${widget.caption}",
-                                //   songName: "${widget.songName}",
-                                // ),
-                                RightPanel(
-                                  size: widget.size,
+                  child: Stack(
 
-                                  likes: "${widget.likes}",
-                                  comments: "${widget.comments}",
-                                  shares: "${widget.shares}",
-                                  profileImg: "${widget.profileImg}",
-                                  albumImg: "${widget.albumImg}",
-                                )
-                              ],
-                            ))
-                          ],
-                        ),
+                    children: <Widget>[
+                      PageView.builder(
+                        itemBuilder: (context,index){
+                          return  Container(
+                             
+                            height: 600,width: 500,decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                        image:DecorationImage(image: AssetImage("${widget.coverImage}"),fit: BoxFit.fill)
+                      ),);
+                        }),
+                     
+                      // VideoPlayer(_videoController),
+                      // Center(
+                      //   child: Container(
+                      //     decoration: BoxDecoration(
+                      //     ),
+                      //     child: isPlaying(),
+                      //  ),
+                      // )
+                    ],
+                  ),
+                );
+                  }),
+               
+                Container(
+                  height: widget.size.height,
+                  width: widget.size.width,
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.only(left: 15, top: 20, bottom: 10),
+                    child: SafeArea(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          // HeaderHomePage(),
+                          Expanded(
+                              child:Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              // LeftPanel(
+                              //   size: widget.size,
+                              //   name: "${widget.name}",
+                              //   caption: "${widget.caption}",
+                              //   songName: "${widget.songName}",
+                              // ),
+                              RightPanel(
+                                size: widget.size,
+                                name:"${widget.name}",
+                                likes: "${widget.likes}",
+                                comments: "${widget.comments}",
+                                shares: "${widget.shares}",
+                                profileImg: "${widget.profileImg}",
+                                albumImg: "${widget.albumImg}",
+                              ),
+                                RightPanel(
+                                size: widget.size,
+                                name:"${widget.name}",
+                                likes: "${widget.likes}",
+                                comments: "${widget.comments}",
+                                shares: "${widget.shares}",
+                                profileImg: "${widget.profileImg}",
+                                albumImg: "${widget.albumImg}",
+                              )
+                            ],
+                          ))
+                        ],
                       ),
                     ),
-                  )
-                ],
-              ),
-            )),
-      ),
+                  ),
+                ),
+              ],
+            ),
+          )),
     );
   }
 }
@@ -225,6 +246,7 @@ class RightPanel extends StatelessWidget {
   final String shares;
   final String profileImg;
   final String albumImg;
+  final String name;
   const RightPanel({
     Key key,
     @required this.size,
@@ -233,6 +255,7 @@ class RightPanel extends StatelessWidget {
     this.shares,
     this.profileImg,
     this.albumImg,
+    this.name,
   }) : super(key: key);
 
   final Size size;
@@ -242,25 +265,36 @@ class RightPanel extends StatelessWidget {
     return 
    
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-         Container(
+   Container(
     width: 50,
     height: 50,
     decoration: BoxDecoration(
       border: Border.all(color: white),
-      shape: BoxShape.circle,
+      // shape: BoxShape.circle,
       image: DecorationImage(
           image: NetworkImage(
           profileImg),
           fit: BoxFit.cover)),
 
     ),
-   
-        getIcons(TikTokIcons.heart, likes, 35.0),
-        getIcons(TikTokIcons.chat_bubble, comments, 35.0),
-        getIcons(TikTokIcons.reply, shares, 25.0),
-        getAlbum(albumImg)
+    SizedBox(width: 10,),
+        Container(
+          width: 50,
+          child: Text(name),
+        ),
+         SizedBox(width: 130,),
+       getIcons(TikTokIcons.chat_bubble, shares, 20.0),
+        SizedBox(width: 10,),
+       getIcons(TikTokIcons.reply, shares, 20.0),
+        SizedBox(width: 10,),
+        getIcons(TikTokIcons.chat_bubble, comments, 20.0),
+         SizedBox(width: 10,),
+        
+        //  getIcons(TikTokIcons.chat_bubble, shares, 20.0),
+           getIcons(TikTokIcons.heart, likes, 20.0),
+        // getAlbum(albumImg)
           ],
         );
     

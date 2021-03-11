@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tik_tok_ui/pages/discover.dart';
 import 'package:tik_tok_ui/pages/home_page.dart';
 import 'package:tik_tok_ui/theme/colors.dart';
 import 'package:tik_tok_ui/widgets/tik_tok_icons.dart';
@@ -25,13 +26,14 @@ class _RootAppState extends State<RootApp> {
       index: pageIndex,
       children: <Widget>[
         HomePage(),
-        Center(
-          child: Text("Discover",style: TextStyle(
-            color: black,
-            fontSize: 20,
-            fontWeight: FontWeight.bold
-          ),),
-        ),
+         Discover(),
+        // Center(
+        //   child: Text("Discover",style: TextStyle(
+        //     color: black,
+        //     fontSize: 20,
+        //     fontWeight: FontWeight.bold
+        //   ),),
+        // ),
         Center(
           child: Text("Upload",style: TextStyle(
             color: black,
