@@ -31,6 +31,7 @@ dependencies:
   line_icons:
   video_player: ^0.10.11+2
   get: ^3.26.0
+  # camera: ^0.8.0
 
 dev_dependencies:
   flutter_test:
@@ -51,6 +52,7 @@ flutter:
   assets:
     - assets/videos/
     - assets/love.jpg
+    - assets/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

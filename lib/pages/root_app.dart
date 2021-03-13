@@ -4,7 +4,8 @@ import 'package:tik_tok_ui/pages/home_page.dart';
 import 'package:tik_tok_ui/theme/colors.dart';
 import 'package:tik_tok_ui/widgets/tik_tok_icons.dart';
 import 'package:tik_tok_ui/widgets/upload_icon.dart';
-
+// import 'package:camera/camera.dart';
+import 'package:tik_tok_ui/pages/profile_page.dart';
 class RootApp extends StatefulWidget {
   @override
   _RootAppState createState() => _RootAppState();
@@ -48,13 +49,15 @@ class _RootAppState extends State<RootApp> {
             fontWeight: FontWeight.bold
           ),),
         ),
-        Center(
-          child: Text("Profile",style: TextStyle(
-            color: black,
-            fontSize: 20,
-            fontWeight: FontWeight.bold
-          ),),
-        )
+        ProfilePage(),
+        // Center(
+        //   child: Text("Profile",style: TextStyle(
+        //     color: black,
+        //     fontSize: 20,
+        //     fontWeight: FontWeight.bold
+        //   ),)
+        //   ,
+        // ),
       ],
     );
   }
